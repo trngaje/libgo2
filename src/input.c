@@ -294,6 +294,40 @@ static void* input_task(void* arg)
                     case ABS_RY:
                         input->pending_state.thumbs[Go2InputThumbstick_Right].y = ev.value / (float)abs_ry_max;
                         break;
+					case ABS_HAT0X:	 // add ABS_HAT0X/ABS_HAT0Y by trngaje
+						if (ev.value < 0)
+						{
+							input->pending_state.buttons[Go2InputButton_DPadLeft] = ButtonState_Pressed;
+							input->pending_state.buttons[Go2InputButton_DPadRight] = ButtonState_Released;
+						}
+						else if (ev.value > 0)
+						{
+							input->pending_state.buttons[Go2InputButton_DPadLeft] = ButtonState_Released;							
+							input->pending_state.buttons[Go2InputButton_DPadRight] = ButtonState_Pressed;	
+						}
+						else
+						{
+							input->pending_state.buttons[Go2InputButton_DPadLeft] = ButtonState_Released;
+							input->pending_state.buttons[Go2InputButton_DPadRight] = ButtonState_Released;							
+						}
+						break;
+					case ABS_HAT0Y:
+						if (ev.value < 0)
+						{
+			                input->pending_state.buttons[Go2InputButton_DPadUp] = ButtonState_Pressed;
+							input->pending_state.buttons[Go2InputButton_DPadDown] = ButtonState_Released;		
+						}						
+						else if (ev.value > 0)
+						{
+							input->pending_state.buttons[Go2InputButton_DPadUp] = ButtonState_Released;
+							input->pending_state.buttons[Go2InputButton_DPadDown] = ButtonState_Pressed;			
+						}
+						else
+						{
+							input->pending_state.buttons[Go2InputButton_DPadUp] = ButtonState_Released;
+							input->pending_state.buttons[Go2InputButton_DPadDown] = ButtonState_Released;	
+						}
+						break;
                 }
             }
             else if (ev.type == EV_SYN)

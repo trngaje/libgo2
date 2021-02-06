@@ -1176,7 +1176,7 @@ go2_context_t* go2_context_create(go2_display_t* display, int width, int height,
         printf("eglInitialize failed.\n");
         goto err_01;
     }
-
+/*
     printf("EGL: major=%d, minor=%d\n", major, minor);
     printf("EGL: Vendor=%s\n", eglQueryString(result->eglDisplay, EGL_VENDOR));
     printf("EGL: Version=%s\n", eglQueryString(result->eglDisplay, EGL_VERSION));
@@ -1184,7 +1184,7 @@ go2_context_t* go2_context_create(go2_display_t* display, int width, int height,
     printf("EGL: Extensions=%s\n", eglQueryString(result->eglDisplay, EGL_EXTENSIONS));
     printf("EGL: ClientExtensions=%s\n", eglQueryString(EGL_NO_DISPLAY, EGL_EXTENSIONS));
     printf("\n");
-
+*/
 
     EGLConfig eglConfig = FindConfig(result->eglDisplay, attributes->red_bits, attributes->green_bits,
         attributes->blue_bits, attributes->alpha_bits, attributes->depth_bits, attributes->stencil_bits);
